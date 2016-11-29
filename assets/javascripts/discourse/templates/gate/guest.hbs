@@ -1,0 +1,15 @@
+{{#d-modal-body title="guest_gate.modal.title" class="guest-gate"}}
+  <div class="modal-body template-manager-modal">
+    <div>
+      <h3>{{i18n 'guest_gate.modal.title'}}</h3>
+      <br>
+      {{i18n 'guest_gate.modal.description'}}
+    </div>
+    <br>
+    <div class="buttons">
+      {{d-button label="guest_gate.modal.sign_up" action="showCreateAccount" icon="plus" class="btn-large"}}
+      &nbsp;{{i18n 'guest_gate.modal.or'}}&nbsp;
+      {{d-button label="guest_gate.modal.log_in" action="showLogin" icon="user" class="btn-large"}}
+    </div>
+  </div>
+{{/d-modal-body}}

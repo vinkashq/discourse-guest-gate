@@ -1,7 +1,7 @@
 import { cleanDOM } from 'discourse/lib/clean-dom';
 import { startPageTracking, onPageChange } from 'discourse/lib/page-tracker';
 import { viewTrackingRequired } from 'discourse/lib/ajax';
-import showModal from 'discourse/lib/show-modal';
+import showGate from 'discourse/plugins/guest-gate/discourse/lib/show-gate';
 
 export default {
   name: "guest-gate",
@@ -19,7 +19,7 @@ export default {
 
         onPageChange((url, title) => {
           if (pageView >= Discourse.SiteSettings.allowed_guest_page_views) {
-            showModal('guest-gate');
+            showGate('guest');
           }
           pageView++;
         });
