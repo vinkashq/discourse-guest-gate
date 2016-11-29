@@ -1,0 +1,7 @@
+plugins:
+  guest_gate_enabled:
+    default: true
+    client: true
+  allowed_guest_page_views:
+    default: 1
+    client: true
