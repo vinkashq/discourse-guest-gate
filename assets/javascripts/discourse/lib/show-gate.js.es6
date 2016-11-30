@@ -7,8 +7,7 @@ export default function(name, opts) {
   const route = container.lookup('route:application');
   const modalController = route.controllerFor('modal');
 
-  modalController.set('modalClass', null);
-  modalController.set('isGate', true);
+  modalController.set('modalClass', 'gate');
 
   const controllerName = opts.admin ? `modals/${name}` : name;
 
@@ -26,7 +25,7 @@ export default function(name, opts) {
       renderArgs.view = 'modal-body';
     }
 
-    const modalName = `gate/${templateName}`;
+    const modalName = `${templateName}`;
     const fullName = opts.admin ? `admin/templates/${modalName}` : modalName;
     route.render(fullName, renderArgs);
     if (opts.title) {

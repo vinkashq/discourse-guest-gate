@@ -1,8 +1,6 @@
 {{#d-modal-body title="guest_gate.modal.title" class="guest-gate"}}
   <div class="modal-body template-manager-modal">
     <div>
-      <h3>{{i18n 'guest_gate.modal.title'}}</h3>
-      <br>
       {{i18n 'guest_gate.modal.description'}}
     </div>
     <br>
@@ -13,3 +11,9 @@
     </div>
   </div>
 {{/d-modal-body}}
+<style type="text/css">
+  .gate .close {
+    display: none;
+    pointer-events: none;
+  }
+</style>

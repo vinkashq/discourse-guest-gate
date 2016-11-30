@@ -19,7 +19,7 @@ export default {
 
         onPageChange((url, title) => {
           if (pageView >= Discourse.SiteSettings.allowed_guest_page_views) {
-            showGate('guest');
+            showGate('guest-gate');
           }
           pageView++;
         });
