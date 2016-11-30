@@ -18,10 +18,16 @@ export default {
         startPageTracking(router);
 
         onPageChange((url, title) => {
-          if (pageView >= Discourse.SiteSettings.allowed_guest_page_views) {
-            showGate('guest-gate');
+          var urlPrefix = "/t/";
+
+          var pattern = new RegExp('^' + urlPrefix);
+          var hasPrefix = pattern.test(url);
+          if(hasPrefix) {
+            if (pageView >= Discourse.SiteSettings.max_guest_topic_views) {
+              showGate('guest-gate');
+            }
+            pageView++;
           }
-          pageView++;
         });
       }
     }

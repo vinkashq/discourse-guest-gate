@@ -2,6 +2,6 @@ plugins:
   guest_gate_enabled:
     default: true
     client: true
-  allowed_guest_page_views:
+  max_guest_topic_views:
     default: 1
     client: true

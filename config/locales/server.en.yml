@@ -1,4 +1,4 @@
 en:
   site_settings:
     guest_gate_enabled: "Enable 'Guest Gate' plugin"
-    allowed_guest_page_views: "How many pages a guest user can view before showing Guest Gate"
+    max_guest_topic_views: "How many topics a guest can view before showing the Guest Gate"
