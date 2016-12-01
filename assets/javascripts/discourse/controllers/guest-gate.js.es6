@@ -1,11 +1,10 @@
 import ModalFunctionality from 'discourse/mixins/modal-functionality';
+import { setting } from 'discourse/lib/computed';
 
 export default Ember.Controller.extend(ModalFunctionality, {
   login: Ember.inject.controller(),
 
-  ssoEnabled: function() {
-    return this.get('siteSettings.sso_enabled');
-  }.property(),
+  ssoEnabled: setting('sso_enabled'),
 
   actions: {
     externalLogin(provider) {
