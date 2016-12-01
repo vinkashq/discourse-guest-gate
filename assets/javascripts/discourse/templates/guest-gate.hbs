@@ -1,19 +1,34 @@
 {{#d-modal-body title="guest_gate.modal.title" class="guest-gate"}}
-  <div class="modal-body template-manager-modal">
-    <div>
-      {{i18n 'guest_gate.modal.description'}}
-    </div>
-    <br>
-    <div class="buttons">
-      {{d-button label="guest_gate.modal.sign_up" action="showCreateAccount" icon="plus" class="btn-large"}}
-      &nbsp;{{i18n 'guest_gate.modal.or'}}&nbsp;
-      {{d-button label="guest_gate.modal.log_in" action="showLogin" icon="user" class="btn-large"}}
-    </div>
+  <div>
+    <p>{{replace-emoji (i18n 'signup_cta.intro')}}</p>
+    <p>{{replace-emoji (i18n 'signup_cta.value_prop')}}</p>
   </div>
+  {{login-buttons action="externalLogin"}}
 {{/d-modal-body}}
+<div class="modal-footer">
+{{#if ssoEnabled}}
+  {{d-button label="guest_gate.modal.log_in" action="showLogin"}}
+  &nbsp;&nbsp;or&nbsp;
+  {{d-button label="guest_gate.modal.sign_up" action="showCreateAccount"}}
+{{else}}
+  <a href {{action "showLogin"}}>{{i18n 'guest_gate.modal.log_in'}}</a>
+  .
+  <a href {{action "showCreateAccount"}}>{{i18n 'guest_gate.modal.sign_up'}}</a>
+{{/if}}
+</div>
 <style type="text/css">
-  .gate .close {
+  .gate .modal-header {
     display: none;
-    pointer-events: none;
+  }
+  #login-buttons {
+    margin-bottom: 0;
+    text-align: center;
+  }
+  .modal-footer {
+    text-align: center;
+    color: #787878;
+  }
+  .modal-footer a {
+    color: #787878;
   }
 </style>

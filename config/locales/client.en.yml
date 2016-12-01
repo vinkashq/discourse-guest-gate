@@ -4,6 +4,6 @@ en:
       modal:
         title: "Why do I need to sign in?"
         description: "This is a community that depends on everyone being able to pitch in when they know something."
-        sign_up: "Create a new account"
-        log_in: "Sign in"
+        sign_up: "Sign Up with Email"
+        log_in: "I already have an account"
         or: "or"
