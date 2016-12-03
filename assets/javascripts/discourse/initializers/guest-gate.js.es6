@@ -23,10 +23,10 @@ export default {
           var pattern = new RegExp('^' + urlPrefix);
           var hasPrefix = pattern.test(url);
           if(hasPrefix) {
+            pageView++;
             if (pageView >= Discourse.SiteSettings.max_guest_topic_views) {
               showGate('guest-gate');
             }
-            pageView++;
           }
         });
       }
