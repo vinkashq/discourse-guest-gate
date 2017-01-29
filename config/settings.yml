@@ -5,3 +5,34 @@ plugins:
   max_guest_topic_views:
     default: 1
     client: true
+  custom_gate_enabled:
+    default: false
+    client: true
+  custom_gate_image_url:
+    type: text
+    default: ''
+    client: true
+  custom_gate_big_text:
+    type: text
+    default: 'Big custom text'
+    client: true
+  custom_gate_big_text_color:
+    type: text
+    default: '#000000'
+    client: true
+  custom_gate_little_text:
+    type: text
+    default: 'Little custom text'
+    client: true
+  custom_gate_little_text_color:
+    type: text
+    default: '#000000'
+    client: true
+  custom_gate_background_color:
+    type: text
+    default: '#FFFFFF'
+    client: true
+  custom_gate_link_color:
+    type: text
+    default: '#787878'
+    client: true
