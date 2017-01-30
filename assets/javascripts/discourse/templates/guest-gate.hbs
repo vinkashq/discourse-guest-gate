@@ -1,37 +1,95 @@
 {{#d-modal-body title="guest_gate.modal.title" class="guest-gate"}}
-  <div>
-    <p>{{replace-emoji (i18n 'signup_cta.intro')}}</p>
-    <p>{{replace-emoji (i18n 'signup_cta.value_prop')}}</p>
-  </div>
+  {{#if siteSettings.custom_gate_enabled }}
+    <div class="custom-gate">
+      <img src="{{ siteSettings.custom_gate_image_url }}"/>
+      <h1 style="color:{{ siteSettings.custom_gate_big_text_color }}">
+        {{ siteSettings.custom_gate_big_text }}
+      </h1>
+      <h4>
+        <span style="color:{{ siteSettings.custom_gate_little_text_color }}">
+          {{ siteSettings.custom_gate_little_text }}
+        </span>
+      </h4>
+    </div>
+    <style type="text/css">
+      .custom-gate {
+        text-align: center;
+      }
+      .custom-gate img {
+        width: 60%;
+      }
+      .custom-gate h1 {
+        margin-top: 4%;
+      }
+      .custom-gate h4 {
+        margin-top: 4%;
+        margin-bottom: 4%;
+      }
+      .modal-footer {
+        text-align: center;
+        color: {{ siteSettings.custom_gate_link_color }} !important;
+      }
+      .modal-footer a {
+        color: {{ siteSettings.custom_gate_link_color }} !important;
+      }
+      .modal-inner-container {
+        background-color: {{ siteSettings.custom_gate_background_color }} !important;
+      }
+    </style>
+  {{else}}
+    <div>
+      <p>{{replace-emoji (i18n 'signup_cta.intro')}}</p>
+      <p>{{replace-emoji (i18n 'signup_cta.value_prop')}}</p>
+    </div>
+  {{/if}}
+  <style type="text/css">
+    .modal-middle-container {
+      margin-top: 10%;
+    }
+    .gate .modal-header {
+      border-bottom: none;
+    }
+    .gate .modal-header .close {
+      {{#if siteSettings.x_button_disabled }}
+      display: none;
+      {{else}}
+      margin-top: 15px;
+      {{/if}}
+    }
+    .gate .modal-header h3 {
+      display: none;
+    }
+    .modal .modal-body p {
+      font-size: 14px;
+    }
+    #login-buttons {
+      margin-bottom: 0;
+      text-align: center;
+    }
+    .mobile-view #login-buttons {
+      width: 100%;
+    }
+    .mobile-view .btn-social {
+      width: 100%;
+      margin-top: 3px;
+    }
+    .modal-footer {
+      text-align: center;
+      color: #787878;
+    }
+    .modal-footer a {
+      color: #787878;
+    }
+  </style>
   {{login-buttons action="externalLogin"}}
 {{/d-modal-body}}
 <div class="modal-footer">
-{{#if ssoEnabled}}
-  {{d-button label="guest_gate.modal.log_in" action="showLogin"}}
-  &nbsp;&nbsp;or&nbsp;
-  {{d-button label="guest_gate.modal.sign_up" action="showCreateAccount"}}
-{{else}}
-  <a href {{action "showLogin"}}>{{i18n 'guest_gate.modal.log_in'}}</a>
-  .
-  <a href {{action "showCreateAccount"}}>{{i18n 'guest_gate.modal.sign_up_email'}}</a>
-{{/if}}
+  {{#if ssoEnabled}}
+    {{d-button label="guest_gate.modal.log_in" action="showLogin"}}
+    &nbsp;&nbsp;or&nbsp;
+    {{d-button label="guest_gate.modal.sign_up" action="showCreateAccount"}}
+  {{else}}
+  <a href {{action "showLogin"}}>{{i18n 'log_in'}}</a> |
+  <a href {{action "showCreateAccount"}}>{{i18n 'create_account.title'}}</a>
+  {{/if}}
 </div>
-<style type="text/css">
-  .gate .modal-header {
-    display: none;
-  }
-  .modal .modal-body p {
-    font-size: 14px;
-  }
-  #login-buttons {
-    margin-bottom: 0;
-    text-align: center;
-  }
-  .modal-footer {
-    text-align: center;
-    color: #787878;
-  }
-  .modal-footer a {
-    color: #787878;
-  }
-</style>
