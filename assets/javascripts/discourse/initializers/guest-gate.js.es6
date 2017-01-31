@@ -23,8 +23,10 @@ export default {
           var pattern = new RegExp('^' + urlPrefix);
           var hasPrefix = pattern.test(url);
           if(hasPrefix) {
+            var maxViews = parseInt(Discourse.SiteSettings.max_guest_topic_views);
             pageView++;
-            if (pageView >= Discourse.SiteSettings.max_guest_topic_views) {
+            if (pageView === maxViews) {
+              pageView = getRandomInt(0, maxViews + 1);
               showGate('guest-gate');
             }
           }
@@ -33,3 +35,9 @@ export default {
     }
   }
 };
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
