@@ -8,6 +8,9 @@ plugins:
   x_button_disabled:
     default: false
     client: true
+  gate_show_only_once:
+    default: false
+    client: true
   custom_gate_enabled:
     default: false
     client: true
