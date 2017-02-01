@@ -17,6 +17,7 @@ export default {
         router.on('didTransition', cleanDOM);
 
         startPageTracking(router);
+        var gateShownOnce = false;
 
         onPageChange((url, title) => {
 
@@ -32,8 +33,12 @@ export default {
             }
             var maxViews = parseInt(Discourse.SiteSettings.max_guest_topic_views);
             pageView++;
-            var showGateBool = (pageView === maxViews) && !isBot;
+            var hitMaxViews = pageView >= maxViews;
+            var showGateBool = hitMaxViews && !isBot && !gateShownOnce;
             if (showGateBool) {
+              if (Discourse.SiteSettings.gate_show_only_once) {
+                gateShownOnce = true;
+              }
               pageView = getRandomInt(0, maxViews + 1);
               showGate('guest-gate');
             }
