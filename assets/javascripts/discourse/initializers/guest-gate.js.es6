@@ -1,10 +1,11 @@
 import { cleanDOM } from 'discourse/lib/clean-dom';
-import { startPageTracking, onPageChange } from 'discourse/lib/page-tracker';
+import { startPageTracking } from 'discourse/lib/page-tracker';
 import { viewTrackingRequired } from 'discourse/lib/ajax';
 import showGate from 'discourse/plugins/guest-gate/discourse/lib/show-gate';
 
 export default {
   name: "guest-gate",
+  after: 'inject-objects',
 
   initialize(container) {
     if(Discourse.SiteSettings.guest_gate_enabled) {
@@ -15,13 +16,14 @@ export default {
         router.on('willTransition', viewTrackingRequired);
         router.on('didTransition', cleanDOM);
 
-        startPageTracking(router);
+        let appEvents = container.lookup('app-events:main');
+        startPageTracking(router, appEvents);
 
-        onPageChange((url, title) => {
+        appEvents.on('page:changed', data => {
           var urlPrefix = "/t/";
 
           var pattern = new RegExp('^' + urlPrefix);
-          var hasPrefix = pattern.test(url);
+          var hasPrefix = pattern.test(data.url);
           if(hasPrefix) {
             pageView++;
             if (pageView >= Discourse.SiteSettings.max_guest_topic_views) {
